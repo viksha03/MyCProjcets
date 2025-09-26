@@ -1,0 +1,56 @@
+/*
+Цик-цак е број за кој важи дека за секој пар соседни цифри во бројот важи дека едната е помала од 5, 
+а другата е поголема или еднаква на 5. На пример, ако бројот x е составен од цифрите a, b, c и d, тогаш за нив важи:
+a<5, b>=5, c<5, d>=5 или a>=5, b<5, c>=5, d<5
+Пр.  508294, 2638, 81
+Од тастатура се читаат непознат број на цели броеви поголеми од или еднакви на 10 (броевите помали од 10 се игнорираат). 
+Читањето завршува во моментот кога ќе се прочита знак што не е цифра. Да се испечатат сите цик-цак броеви.
+*/
+//Цик-цак е број за кој важи дека за секој пар соседни цифри во бројот важи дека едната е помала од 5,
+//а другата е поголема или еднаква на 5. На пример, ако бројот x е составен од цифрите a, b, c и d, тогаш за нив важи:
+//a<5, b>=5, c<5, d>=5 или a>=5, b<5, c>=5, d<5
+//Пр.  508294, 2638, 81
+//Од тастатура се читаат непознат број на цели броеви поголеми од или еднакви на 10 (броевите помали од 10 се игнорираат).
+//Читањето завршува во моментот кога ќе се прочита знак што не е цифра. Да се испечатат сите цик-цак броеви.
+
+#include<stdio.h>
+int main()
+{
+    int br,d,d1,flg=0,temp,i;
+    while(scanf("%d",&br)){
+        temp=br;
+        if(br>=10){ // ako brojot sto e vnesen e pogolem od 10
+            for(d=br%10,i=2,br/=10;br;br/=10,i++){ // za d zemame edinicata na brojot br,i da e 2, i se dodeka  brojot e pogolem od 0, posle sekoj izvrsen ciklus, br se krati za 10, i se inkrementira
+                d1=br%10;
+                if(d>=5){ // ako d e pogolemo ili ednakvo na 5
+                    if(!(i%2)){ //ako i e delivo so 2
+                        if(d1>=5){ //ako d1 e pogolemo ili ednakvo od 5
+
+                            break;
+                        }
+                    }else{ // ako i ne e delivo so 5
+                        if(d1<5){ // ako d1 e pomalo od 5
+
+                            break;
+                        }
+                    }
+                }else{ // ako d e pomalo od 5
+                    if(!(i%2)){ //ako i e delivo so 2
+                        if(d1<5){ //ako d1 e pomal od 5
+
+                            break;
+                        }
+                    }else{ // ako i ne e deliv so 2
+                        if(d1>=5){//ako d1 e pogolem ili ednakov na 5
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if(!br){ // ako na krajot dobieme za br da e 0 se printa temp
+            printf("%d\n",temp);
+        }
+    }
+}
