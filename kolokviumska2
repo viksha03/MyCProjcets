@@ -1,0 +1,32 @@
+/*
+Од стандарден влез се чита еден природен број n. Меѓу природните броеви помали од n, да се 
+најде оној чиј што збир на делителите е најголем. Во пресметувањето на збирот на делителите на даден број, 
+да не се зема предвид самиот број.
+*/
+#include <stdio.h>
+int main()
+{
+    int broj,i,j,delitel=0,max=0,maxbroj=0;
+    scanf("%d",&broj);
+    for(i=broj;i>2;i--) //za i se zema brojot koj sto e vnesen, for ciklusot se vrti se dodeka i ne dojde do 2
+    {
+        for(j=i-1;j>0;j--) // za j se zema 1 broj pomal od i, for ciklusot se vrti se dodeka j ne dodje do 0
+        {
+            if(i%j==0) // ako 'i' i 'j' se delat, j se dodava vo promenliva delitel
+                delitel+=j;
+        }
+        if(delitel>max) // ako promenlivata delitel e pogolema od najgolemiot broj na deliteli;
+            {
+                if(i<broj){ // ako i ne e promenlivata sto ja vnesovme, promenlivata delitel i  'i' se pamtat kako najgolemi vrednosti
+                    max=delitel;
+                    maxbroj=i;
+                }
+            }
+        delitel=0; //delitel se resetira
+    }
+
+    printf("%d",maxbroj); //se printa nagolemiot broj
+
+    return 0;
+
+}
