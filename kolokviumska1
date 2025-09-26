@@ -1,0 +1,33 @@
+/*
+Eден природен e „интересен“ ако неговиот обратен број е делив со неговиот број на цифри. 
+Обратен број е бројот составен од истите цифри, но во обратен редослед (на пример, 653 е обратен број на бројот 356). 
+Од тастатура се внесува природен број n ( n > 9). Да се најде и отпечати најголемиот природен број помал од n кој што е 
+„интересен“. Ако внесениот број не е валиден, да се отпечати соодветна порака (Brojot ne e validen).
+*/
+#include <stdio.h>
+int main() {
+    int n,i;
+    scanf("%d",&n);
+    if(n<10){
+        printf("Brojot ne e validen");
+        return 0;
+    }else{
+        for(i=n-1;i>=9;i--){ // za sekoj broj pomal gornata granica se vrsi se dodeka i ne dojde do ednocifren broj
+            int c=0;
+            int temp=i;
+            int obraten=0;
+            while(temp>0){// se dodeka temp e pogolem od 0, se zapisuva obratniot broj na i
+                obraten=obraten*10+temp%10;
+                temp/=10;
+                c++;
+            }
+            if(obraten%c==0){ // ako obrantiot broj se deli so negovite cifri se pechati i
+                printf("%d",i);
+                return 0;
+            }
+        }
+
+    }
+    printf("NE"); // ako obraten broj ne e deliv so brojot na negovite cifri se pechati NE
+    return 0;
+}
