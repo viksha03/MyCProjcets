@@ -1,0 +1,42 @@
+/*
+Од стандарден влез се внесуваат два цели броја N и Х.
+Да се најде најблискот број помал од N коj е тотално различен од бројот Х.
+Еден број е тотално различен од друг ако и само ако во него не се појавува ниту една од цифрите на другиот број.
+Задачата да се реши без употреба на низи и матрици.
+*/
+#include <stdio.h>
+
+int main() {
+    int n,x,tempx,tempn,controln,controlx,razlicni=1,i;
+    scanf("%d %d",&n,&x);
+    --n;
+    for(i=n;i>=0;--i) // za i se zema 1 broj pomal od n, se dodeka i e >= 0, se vrsi ciklusot
+    {
+        tempn=i;
+        while(tempn>0)// se dodeka tempn e pogolemo od 0 se vrsi ciklusot
+        {
+            tempx=x;
+            controln=tempn%10;
+            while(tempx>0) // se dodeka tempx e pogolemo od 0 se vrsi ciklusot
+            {
+                controlx=tempx%10;
+                if(controln==controlx) //ako poslednata cifra na n i poslednata cifra na x se isti se vrsat naredbite
+                {
+                    razlicni=0;
+                    break;
+                }
+                tempx/=10;
+            }
+            if(razlicni==0) // ako nema razlicni se zavsuva while(tempn>0) ciklusot
+                break;
+            tempn/=10;
+        }
+        if(razlicni)  // ako ima razlicni se printa brojot i se zavrsuva for ciklusot
+        {
+            printf("%d",i);
+            break;
+        }
+       razlicni=1; //promenlivata se resetira
+    }
+    return 0;
+}
