@@ -1,0 +1,72 @@
+/*
+Од стандарден влез се чита цел број N (N<100) и потоа N низи од знаци. 
+Низите знаци содржат букви, цифри и специјални знаци, а секоја од нив не е поголема од 50 знаци.
+Да се напише програма што ќе ги отпечати на екран сите низи од знаци во кои се содржи поднизата А1c 
+најмалку 2 пати (пр. A1c01АA1c92, 12A1cwwA1cxy, аA1cwA1cA1ccA1cxab) според редоследот како што се прочитани 
+од влезот. При печатење на зборовите, сите алфабетски знаци треба да се испечатат со мали букви.
+Пример
+Влез:
+6
+Ekjqh!!lkjsdh 
+ A1c01АA1c92
+12A1cwwA1cxy 
+12A1cwwA1bxy 
+аA1cwA1cA1ccA1cxab
+nemaA1c_povekjepati
+
+Излез
+а1c01аа1c92
+12а1cwwа1cxy 
+аа1cwа1cа1ccа1cxab
+*/
+
+#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+int main(){
+int n,i;
+char niza="a1c";
+char a[100][50];
+scanf("%d", &n);
+getchar();
+for(i=0; i<n; i++){
+    fgets(a[i], 50, stdin);
+}
+
+int j;
+
+int g=0; int b=0;
+    
+for(i=0; i<n; i++){
+      int  br=0;
+        for(j=0; j<strlen(a[i]); j++){
+        if(a[i][j]=='a' || a[i][j]=='A'){
+            if(a[i][j+1]=='1'){
+                if(a[i][j+2]=='c' || a[i][j+2]=='C'){
+
+                    br++;
+                    if(br==2){
+                      for(b=0; b<strlen(a[i]); b++){
+                          
+                      
+                     if(a[i][b]>='A' && a[i][b]<='Z'){
+                        a[i][b]=tolower(a[i][b]);
+                     }
+                     printf("%c",a[i][b]);
+                      }
+                    }
+             }
+            }
+        }
+      }
+
+}
+
+
+
+
+
+
+
+return 0;
+}
