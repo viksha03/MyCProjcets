@@ -1,0 +1,59 @@
+//
+Дадена е текстуална датотека (livce.txt) која претставува ливче во спортска обложувалница.
+
+На почетокот во датотеката, во посебен ред е запишана сумата на уплата (цел број).
+
+Потоа во секој ред од датотеката е запишан по еден тип во следниот формат:
+
+ab12 1 1.25
+Првиот број е шифрата на типот (низа од знаци која не е подолга од 9 знаци), вториот број е типот (може да биде 1, 0 или 2) додека третиот број е коефициентот (реален број).
+
+Ваша задача е да се испечати типот со најголем коефициент како и можната добивка на ливчето. Доколку има повеќе типови со ист максимален коефициент, да се испечати првиот.
+
+Можната добивка се пресметува како производ на сите коефициенти со сумата на уплата.
+//
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+void wf() {
+    FILE *f = fopen("livce.txt", "w");
+    char c;
+    while((c = getchar()) != '#') {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main() {
+    wf();
+    FILE *f = fopen("livce.txt", "r");
+    int cena;
+    fscanf(f, "%d",&cena);
+    char sifra[100];  //sifra = sifra[0];
+    int tip;
+    double koef;
+    char max_s[100];
+    int max_t;
+    double max_k = 0;
+    double dobivka  = 1;
+    while ((fscanf(f, "%s %d %lf", sifra, &tip, &koef)) == 3)
+        {
+            dobivka *= koef;
+            if (koef>max_k)
+            {
+                max_k = koef;
+                max_t = tip;
+                int brojac = 0;
+                for (int i = 0; i<strlen(sifra); i++)
+                {
+                    max_s[i] = sifra[i];
+                    brojac++;
+                }
+                max_s[brojac] = '\0';
+            }
+        }
+    printf("%s %d %.2lf\n", max_s, max_t, max_k);
+    printf("%.2f", dobivka * cena);
+    return 0;
+
+}
