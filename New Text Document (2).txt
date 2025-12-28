@@ -1,17 +1,1 @@
-ip.addr == 128.119.240.84
-3. 17
-4.TCP конекцијата е воспоставена ПРЕД праќањето на првата TLS порак potoa se praka paket 28
-5. tls 1.2Во TLS 1.3:
 
-Нема Client Key Exchange
-6. Од дијаграмот може да се заклучи дека клиентот поддржува повеќе cipher suites, но точниот број не може да се утврди без реална Client Hello порака.
-7. Серверот, по приемот на Client Hello пораката, избира еден cipher suite од листата понудена од клиентот и истиот го соопштува во Server Hello пораката. Во дадениот пример не е наведено кој точно метод на шифрирање е избран
-8Не, сите сертификати не се за www.cs.umass.edu. Само серверскиот сертификат се однесува на www.cs.umass.edu, додека останатите сертификати се однесуваат на intermediate certificate authority кои го потпишале серверскиот сертификат. 
-id-at-commonName = www.cs.umass.edu
-
-9.Subject: CN=www.cs.umass.edu
-Certificate authority-то кое го издал сертификатот за www.cs.umass.edu е DigiCert Inc (преку intermediate CA)
-10. SignedCertificate → signature
-sha256WithRSAEncryption
-
-Extract a TLS Certificate with Wireshark (in 1 Minute)
